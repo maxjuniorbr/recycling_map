@@ -41,3 +41,107 @@ Migrating to CreateJoinTableCollectionPointRecyclableMaterial (20230416153432)
   [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3456408994093091190)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2023-04-16 13:08:51 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dianin/.asdf/installs/ruby/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dianin/.asdf/installs/ruby/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.6ms | Allocations: 636)
+Completed 200 OK in 13ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 5381)
+
+
+Started GET "/collection_points" for ::1 at 2023-04-16 13:08:56 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.5ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 5109)
+  Rendered layout layouts/application.html.erb (Duration: 250.9ms | Allocations: 98047)
+Completed 200 OK in 254ms (Views: 251.8ms | ActiveRecord: 0.5ms | Allocations: 99699)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.5ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Papel"], ["description", "Reciclável papel inclui jornais, revistas, envelopes, papelão e mais."], ["category", "Papel"], ["created_at", "2023-04-16 16:09:42.541310"], ["updated_at", "2023-04-16 16:09:42.541310"]]
+  [1m[36mTRANSACTION (10.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.4ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Plástico"], ["description", "Reciclável plástico inclui garrafas, recipientes, sacolas e mais."], ["category", "Plástico"], ["created_at", "2023-04-16 16:09:42.557089"], ["updated_at", "2023-04-16 16:09:42.557089"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.6ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Vidro"], ["description", "Reciclável vidro inclui potes, garrafas e mais."], ["category", "Vidro"], ["created_at", "2023-04-16 16:09:42.566570"], ["updated_at", "2023-04-16 16:09:42.566570"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.4ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Metal"], ["description", "Reciclável metal inclui latas, papel alumínio, eletrodomésticos e mais."], ["category", "Metal"], ["created_at", "2023-04-16 16:09:42.575174"], ["updated_at", "2023-04-16 16:09:42.575174"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.3ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Eletrônicos"], ["description", "Reciclável eletrônicos incluem telefones, computadores e mais."], ["category", "Eletrônicos"], ["created_at", "2023-04-16 16:09:42.581651"], ["updated_at", "2023-04-16 16:09:42.581651"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.3ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Tecidos"], ["description", "Reciclável tecidos incluem roupas, toalhas, lençóis e mais."], ["category", "Tecidos"], ["created_at", "2023-04-16 16:09:42.587545"], ["updated_at", "2023-04-16 16:09:42.587545"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.7ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Baterias"], ["description", "Reciclável baterias incluem baterias de celular, baterias de carro e mais."], ["category", "Baterias"], ["created_at", "2023-04-16 16:09:42.593583"], ["updated_at", "2023-04-16 16:09:42.593583"]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.5ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Pneus"], ["description", "Reciclável pneus incluem pneus de carro, de moto e mais."], ["category", "Pneus"], ["created_at", "2023-04-16 16:09:42.606024"], ["updated_at", "2023-04-16 16:09:42.606024"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.3ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Óleo de cozinha"], ["description", "Reciclável óleo de cozinha pode ser transformado em biodiesel."], ["category", "Óleo"], ["created_at", "2023-04-16 16:09:42.612112"], ["updated_at", "2023-04-16 16:09:42.612112"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecyclableMaterial Create (0.7ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Pilhas"], ["description", "Reciclável pilhas incluem pilhas alcalinas, pilhas de lítio e mais."], ["category", "Pilhas"], ["created_at", "2023-04-16 16:09:42.618280"], ["updated_at", "2023-04-16 16:09:42.618280"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/collection_points" for ::1 at 2023-04-16 13:09:48 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1791)
+  Rendered layout layouts/application.html.erb (Duration: 51.8ms | Allocations: 37078)
+Completed 200 OK in 59ms (Views: 53.7ms | ActiveRecord: 0.3ms | Allocations: 40975)
+
+
+Started GET "/recyclable_materials" for ::1 at 2023-04-16 13:09:52 -0300
+Processing by RecyclableMaterialsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/index.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.6ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  ↳ app/views/recyclable_materials/index.html.erb:6
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.5ms | Allocations: 244)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 23)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 22)
+  Rendered recyclable_materials/index.html.erb within layouts/application (Duration: 17.4ms | Allocations: 7906)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 10202)
+Completed 200 OK in 22ms (Views: 17.5ms | ActiveRecord: 3.1ms | Allocations: 11320)
+
+
+Started GET "/collection_points" for ::1 at 2023-04-16 13:11:39 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 942)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 14550)
+Completed 200 OK in 26ms (Views: 10.9ms | ActiveRecord: 0.4ms | Allocations: 19053)
+
+
+Started GET "/collection_points/new" for ::1 at 2023-04-16 13:11:41 -0300
+Processing by CollectionPointsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/new.html.erb within layouts/application
+  Rendered collection_points/_form.html.erb (Duration: 13.4ms | Allocations: 5917)
+  Rendered collection_points/new.html.erb within layouts/application (Duration: 14.2ms | Allocations: 6223)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 8429)
+Completed 200 OK in 28ms (Views: 16.9ms | ActiveRecord: 2.7ms | Allocations: 13079)
+
+
