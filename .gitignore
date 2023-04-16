@@ -1,0 +1,56 @@
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# Usado pela biblioteca dotenv para carregar variáveis de ambiente.
+# .env
+
+# Ignorar arquivo de histórico de comandos do Byebug.
+.byebug_history
+
+## Específico para RubyMotion:
+.dat*
+.repl_history
+build/
+*.bridgesupport
+build-iPhoneOS/
+build-iPhoneSimulator/
+
+## Específico para RubyMotion (uso do CocoaPods):
+#
+# Não recomendamos adicionar o diretório Pods ao seu .gitignore. No entanto,
+# você deve julgar por si mesmo, os prós e contras são mencionados em:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+# vendor/Pods/
+
+## Cache de documentação e arquivos gerados:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+
+## Normalização do ambiente:
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
+
+# para uma biblioteca ou gem, você pode querer ignorar esses arquivos, já que o código é
+# destinado a ser executado em vários ambientes; caso contrário, faça o check-in:
+# Gemfile.lock
+# .ruby-version
+# .ruby-gemset
+
+# a menos que esteja dando suporte ao rvm < 1.11.0 ou fazendo algo avançado, ignore isso:
+.rvmrc
+
+# Usado pelo RuboCop. Arquivos de configuração remotos incluídos na diretiva inherit_from.
+# .rubocop-https?--*

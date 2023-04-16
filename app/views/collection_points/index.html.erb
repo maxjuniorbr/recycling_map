@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Collection points</h1>
+
+<div id="collection_points">
+  <% @collection_points.each do |collection_point| %>
+    <%= render collection_point %>
+    <p>
+      <%= link_to "Show this collection point", collection_point %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New collection point", new_collection_point_path %>

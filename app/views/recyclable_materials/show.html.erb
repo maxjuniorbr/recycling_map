@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @recyclable_material %>
+
+<div>
+  <%= link_to "Edit this recyclable material", edit_recyclable_material_path(@recyclable_material) %> |
+  <%= link_to "Back to recyclable materials", recyclable_materials_path %>
+
+  <%= button_to "Destroy this recyclable material", @recyclable_material, method: :delete %>
+</div>

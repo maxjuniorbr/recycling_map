@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Recyclable materials</h1>
+
+<div id="recyclable_materials">
+  <% @recyclable_materials.each do |recyclable_material| %>
+    <%= render recyclable_material %>
+    <p>
+      <%= link_to "Show this recyclable material", recyclable_material %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New recyclable material", new_recyclable_material_path %>
