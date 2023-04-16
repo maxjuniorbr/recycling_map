@@ -1,32 +1,16 @@
-<div id="<%= dom_id collection_point %>">
-  <p>
-    <strong>Name:</strong>
-    <%= collection_point.name %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= collection_point.address %>
-  </p>
-
-  <p>
-    <strong>Latitude:</strong>
-    <%= collection_point.latitude %>
-  </p>
-
-  <p>
-    <strong>Longitude:</strong>
-    <%= collection_point.longitude %>
-  </p>
-
-  <p>
-    <strong>Contact:</strong>
-    <%= collection_point.contact %>
-  </p>
-
-  <p>
-    <strong>Website:</strong>
-    <%= collection_point.website %>
-  </p>
-
+<div id="<%= dom_id collection_point %>" class="card">
+  <div class="card-content">
+    <span class="card-title"><strong>Name:</strong></span>
+    <p><%= collection_point.name %></p>
+    <span class="card-title"><strong>Address:</strong></span>
+    <p><%= collection_point.address %></p>
+    <span class="card-title"><strong>Latitude:</strong></span>
+    <p><%= collection_point.latitude %></p>
+    <span class="card-title"><strong>Longitude:</strong></span>
+    <p><%= collection_point.longitude %></p>
+    <span class="card-title"><strong>Contact:</strong></span>
+    <p><%= collection_point.contact %></p>
+    <span class="card-title"><strong>Website:</strong></span>
+    <p><%= collection_point.website %></p>
+  </div>
 </div>

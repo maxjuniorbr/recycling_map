@@ -1,10 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @collection_point %>
-
-<div>
-  <%= link_to "Edit this collection point", edit_collection_point_path(@collection_point) %> |
-  <%= link_to "Back to collection points", collection_points_path %>
-
-  <%= button_to "Destroy this collection point", @collection_point, method: :delete %>
+<div class="container">
+  <% if notice.present? %>
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel green lighten-2">
+          <span class="white-text"><%= notice %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col s12">
+      <%= render @collection_point %>
+      <div>
+        <%= link_to "Edit this collection point", edit_collection_point_path(@collection_point), class: "btn" %> |
+        <%= link_to "Back to collection points", collection_points_path, class: "btn" %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,10 +1,13 @@
-<h1>Editing collection point</h1>
-
-<%= render "form", collection_point: @collection_point %>
-
-<br>
-
-<div>
-  <%= link_to "Show this collection point", @collection_point %> |
-  <%= link_to "Back to collection points", collection_points_path %>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <br />
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">Editing Collection Points</a>
+        </div>
+      </nav>
+      <%= render "form", collection_point: @collection_point %>
+    </div>
+  </div>
 </div>
