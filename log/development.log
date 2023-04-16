@@ -145,3 +145,189 @@ Processing by CollectionPointsController#new as HTML
 Completed 200 OK in 28ms (Views: 16.9ms | ActiveRecord: 2.7ms | Allocations: 13079)
 
 
+Started GET "/collection_points" for ::1 at 2023-04-16 13:43:08 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 4075)
+  Rendered layout layouts/application.html.erb (Duration: 21.1ms | Allocations: 18111)
+Completed 200 OK in 28ms (Views: 22.1ms | ActiveRecord: 4.8ms | Allocations: 21130)
+
+
+Started GET "/collection_points/new" for ::1 at 2023-04-16 13:43:10 -0300
+Processing by CollectionPointsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/new.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.5ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  ↳ app/views/collection_points/_form.html.erb:38
+  Rendered collection_points/_form.html.erb (Duration: 34.9ms | Allocations: 15686)
+  Rendered collection_points/new.html.erb within layouts/application (Duration: 35.8ms | Allocations: 15978)
+  Rendered layout layouts/application.html.erb (Duration: 37.9ms | Allocations: 18185)
+Completed 200 OK in 47ms (Views: 33.3ms | ActiveRecord: 5.0ms | Allocations: 22583)
+
+
+Started GET "/collection_points/new" for ::1 at 2023-04-16 13:44:34 -0300
+Processing by CollectionPointsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/new.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  ↳ app/views/collection_points/_form.html.erb:38
+  Rendered collection_points/_form.html.erb (Duration: 24.4ms | Allocations: 7343)
+  Rendered collection_points/new.html.erb within layouts/application (Duration: 24.7ms | Allocations: 7447)
+  Rendered layout layouts/application.html.erb (Duration: 34.8ms | Allocations: 21275)
+Completed 200 OK in 70ms (Views: 33.4ms | ActiveRecord: 5.1ms | Allocations: 28173)
+
+
+Started POST "/collection_points" for ::1 at 2023-04-16 13:44:39 -0300
+Processing by CollectionPointsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "collection_point"=>{"name"=>"teste", "address"=>"", "latitude"=>"", "longitude"=>"", "contact"=>"", "website"=>"", "recyclable_material_ids"=>["1"]}, "commit"=>"Create Collection point"}
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/collection_points_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/collection_points_controller.rb:26:in `block in create'
+  [1m[36mCollectionPoint Create (0.8ms)[0m  [1m[32mINSERT INTO "collection_points" ("name", "address", "latitude", "longitude", "contact", "website", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "teste"], ["address", ""], ["latitude", nil], ["longitude", nil], ["contact", ""], ["website", ""], ["created_at", "2023-04-16 16:44:39.337931"], ["updated_at", "2023-04-16 16:44:39.337931"]]
+  ↳ app/controllers/collection_points_controller.rb:26:in `block in create'
+  [1m[36mCollectionPoint::HABTM_RecyclableMaterials Create (0.7ms)[0m  [1m[32mINSERT INTO "collection_points_recyclable_materials" ("collection_point_id", "recyclable_material_id") VALUES ($1, $2)[0m  [["collection_point_id", 1], ["recyclable_material_id", 1]]
+  ↳ app/controllers/collection_points_controller.rb:26:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/collection_points_controller.rb:26:in `block in create'
+Redirected to http://localhost:3000/collection_points/1
+Completed 302 Found in 22ms (ActiveRecord: 4.9ms | Allocations: 10190)
+
+
+Started GET "/collection_points/1" for ::1 at 2023-04-16 13:44:39 -0300
+Processing by CollectionPointsController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/collection_points_controller.rb:67:in `set_collection_point'
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/show.html.erb within layouts/application
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.5ms | Allocations: 278)
+  Rendered collection_points/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1316)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 3530)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.4ms | Allocations: 5514)
+
+
+Started GET "/collection_points" for ::1 at 2023-04-16 13:44:42 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1022)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 3227)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.3ms | Allocations: 3500)
+
+
+Started GET "/collection_points/1" for ::1 at 2023-04-16 13:44:43 -0300
+Processing by CollectionPointsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/collection_points_controller.rb:67:in `set_collection_point'
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/show.html.erb within layouts/application
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered collection_points/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 618)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 2816)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.3ms | Allocations: 3606)
+
+
+Started GET "/collection_points/1/edit" for ::1 at 2023-04-16 13:44:45 -0300
+Processing by CollectionPointsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCollectionPoint Load (0.5ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/collection_points_controller.rb:67:in `set_collection_point'
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/edit.html.erb within layouts/application
+  Rendered collection_points/_form.html.erb (Duration: 7.3ms | Allocations: 3877)
+  Rendered collection_points/edit.html.erb within layouts/application (Duration: 8.2ms | Allocations: 4105)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 4192)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.5ms | Allocations: 5038)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    35:   </div>
+    36:   <div>
+    37:     <%= form.label "Materials", style: "display: block" %>
+    38:     <% @recyclable_materials.each do |material| %>
+    39:       <div>
+    40:         <%= check_box_tag "collection_point[recyclable_material_ids][]", material.id, collection_point.recyclable_material_ids.include?(material.id) %>
+    41:         <%= label_tag "collection_point_recyclable_material_ids_#{material.id}", material.name %>
+  
+app/views/collection_points/_form.html.erb:38
+app/views/collection_points/_form.html.erb:1
+app/views/collection_points/edit.html.erb:3
+Started GET "/collection_points/1/edit" for ::1 at 2023-04-16 13:45:36 -0300
+Processing by CollectionPointsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/collection_points_controller.rb:69:in `set_collection_point'
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/edit.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  ↳ app/views/collection_points/_form.html.erb:38
+  [1m[36mRecyclableMaterial Pluck (0.4ms)[0m  [1m[34mSELECT "recyclable_materials"."id" FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 1]]
+  ↳ app/views/collection_points/_form.html.erb:40
+  Rendered collection_points/_form.html.erb (Duration: 10.3ms | Allocations: 8587)
+  Rendered collection_points/edit.html.erb within layouts/application (Duration: 10.6ms | Allocations: 8732)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 22544)
+Completed 200 OK in 36ms (Views: 17.6ms | ActiveRecord: 5.1ms | Allocations: 30645)
+
+
+Started GET "/collection_points" for ::1 at 2023-04-16 13:45:39 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.1ms | Allocations: 35)
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1102)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 3307)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.3ms | Allocations: 3581)
+
+
+Started GET "/collection_points/1" for ::1 at 2023-04-16 13:45:40 -0300
+Processing by CollectionPointsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/collection_points_controller.rb:69:in `set_collection_point'
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/show.html.erb within layouts/application
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered collection_points/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 2806)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.3ms | Allocations: 3595)
+
+
+Started DELETE "/collection_points/1" for ::1 at 2023-04-16 13:45:41 -0300
+Processing by CollectionPointsController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/collection_points_controller.rb:69:in `set_collection_point'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/collection_points_controller.rb:57:in `destroy'
+  [1m[36mCollectionPoint::HABTM_RecyclableMaterials Delete All (0.7ms)[0m  [1m[31mDELETE FROM "collection_points_recyclable_materials" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 1]]
+  ↳ app/controllers/collection_points_controller.rb:57:in `destroy'
+  [1m[36mCollectionPoint Destroy (0.2ms)[0m  [1m[31mDELETE FROM "collection_points" WHERE "collection_points"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/collection_points_controller.rb:57:in `destroy'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/collection_points_controller.rb:57:in `destroy'
+Redirected to http://localhost:3000/collection_points
+Completed 302 Found in 13ms (ActiveRecord: 7.7ms | Allocations: 3674)
+
+
+Started GET "/collection_points" for ::1 at 2023-04-16 13:45:41 -0300
+Processing by CollectionPointsController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/collection_points/index.html.erb:6
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 887)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 3092)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.3ms | Allocations: 3365)
+
+

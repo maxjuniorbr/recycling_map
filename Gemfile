@@ -4,34 +4,34 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
-gem "rails", "~> 7.0.4", ">= 7.0.4.3" # framework Rails
-gem "sprockets-rails" # pipeline de assets do Rails
-gem "pg", "~> 1.1" # adaptador para PostgreSQL
-gem "puma", "~> 5.0" # servidor web
-gem "importmap-rails" # carregamento de módulos JS
-gem "turbo-rails" # biblioteca de JavaScript
-gem "stimulus-rails" # framework de JavaScript
-gem "jbuilder" # renderização JSON
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ] # informações de fuso horário
-gem "bootsnap", require: false # cache de carregamento de código
+gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem "sprockets-rails"
+gem "pg", "~> 1.1"
+gem "puma", "~> 5.0"
+gem "importmap-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "jbuilder"
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "bootsnap", require: false
 
 # Gems para desenvolvimento
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ] # depuração
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
-gem "web-console" # console do Rails no navegador
-gem 'erb-formatter' # formatador de saída para testes
+gem "web-console"
 
 # Gems para testes
 group :test do
-  gem "capybara" # testes de aceitação
-  gem "selenium-webdriver" # driver para testes com navegador
-  gem "webdrivers" # gerenciador de drivers para testes com navegador
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
 end
 
 # Gems para o front-end
-gem 'jquery-rails' # biblioteca JavaScript
-gem 'sassc-rails' # pré-processador Sass
+gem 'jquery-rails'
+gem 'sassc-rails'
 
 # Outras gems
-gem 'rubocop' # linter para verificação do código-fonte
+gem 'rubocop'
+gem 'htmlbeautifier'
