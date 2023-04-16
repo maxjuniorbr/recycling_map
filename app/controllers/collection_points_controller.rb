@@ -23,12 +23,10 @@ class CollectionPointsController < ApplicationController
   # POST /collection_points or /collection_points.json
   def create
     @collection_point = CollectionPoint.new(collection_point_params)
-
+  
     respond_to do |format|
       if @collection_point.save
-        format.html do
-          redirect_to collection_point_url(@collection_point), notice: 'Collection point was successfully created.'
-        end
+        format.html { redirect_to collection_points_url, notice: 'Collection point was successfully created.' }
         format.json { render :show, status: :created, location: @collection_point }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,9 +39,7 @@ class CollectionPointsController < ApplicationController
   def update
     respond_to do |format|
       if @collection_point.update(collection_point_params)
-        format.html do
-          redirect_to collection_point_url(@collection_point), notice: 'Collection point was successfully updated.'
-        end
+        format.html { redirect_to collection_points_url, notice: 'Collection point was successfully updated.' }
         format.json { render :show, status: :ok, location: @collection_point }
       else
         format.html { render :edit, status: :unprocessable_entity }

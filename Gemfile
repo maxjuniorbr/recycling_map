@@ -30,7 +30,10 @@ end
 
 # Gems para o front-end
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'materialize-sass'
 gem 'sassc-rails'
+gem 'material_icons'
 
 # Outras gems
 gem 'rubocop'

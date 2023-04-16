@@ -9,40 +9,42 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="input-field">
+    <%= form.label :name, class: ('active' if collection_point.name.present?) %>
+    <%= form.text_field :name, class: "validate" %>
   </div>
-  <div>
-    <%= form.label :address, style: "display: block" %>
+  <div class="input-field">
+    <%= form.label :address, class: ('active' if collection_point.address.present?) %>
     <%= form.text_field :address %>
   </div>
-  <div>
-    <%= form.label :latitude, style: "display: block" %>
+  <div class="input-field">
+    <%= form.label :latitude, class: ('active' if collection_point.latitude.present?) %>
     <%= form.text_field :latitude %>
   </div>
-  <div>
-    <%= form.label :longitude, style: "display: block" %>
+  <div class="input-field">
+    <%= form.label :longitude, class: ('active' if collection_point.longitude.present?) %>
     <%= form.text_field :longitude %>
   </div>
-  <div>
-    <%= form.label :contact, style: "display: block" %>
+  <div class="input-field">
+    <%= form.label :contact, class: ('active' if collection_point.contact.present?) %>
     <%= form.text_field :contact %>
   </div>
-  <div>
-    <%= form.label :website, style: "display: block" %>
+  <div class="input-field">
+    <%= form.label :website, class: ('active' if collection_point.website.present?) %>
     <%= form.text_field :website %>
   </div>
   <div>
     <%= form.label "Materials", style: "display: block" %>
     <% @recyclable_materials.each do |material| %>
-      <div>
-        <%= check_box_tag "collection_point[recyclable_material_ids][]", material.id, collection_point.recyclable_material_ids.include?(material.id) %>
-        <%= label_tag "collection_point_recyclable_material_ids_#{material.id}", material.name %>
-      </div>
+      <p>
+        <label>
+          <%= check_box_tag "collection_point[recyclable_material_ids][]", material.id, collection_point.recyclable_material_ids.include?(material.id), class: "filled-in", id: "collection_point_recyclable_material_ids_#{material.id}" %>
+          <span><%= material.name %></span>
+        </label>
+      </p>
     <% end %>
   </div>
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn waves-effect waves-light" %> | <%= link_to "Back", collection_points_path, class: "btn" %>
   </div>
 <% end %>
