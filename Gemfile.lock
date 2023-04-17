@@ -86,6 +86,8 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    cssbundling-rails (1.1.2)
+      railties (>= 6.0.0)
     date (3.3.3)
     debug (1.7.2)
       irb (>= 1.5.0)
@@ -113,6 +115,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jsbundling-rails (1.1.1)
+      railties (>= 6.0.0)
     json (2.6.3)
     loofah (2.20.0)
       crass (~> 1.0.2)
@@ -255,12 +259,14 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  cssbundling-rails
   debug
   htmlbeautifier
   importmap-rails
   jbuilder
   jquery-rails
   jquery-ui-rails
+  jsbundling-rails
   material_icons
   materialize-sass
   pg (~> 1.1)

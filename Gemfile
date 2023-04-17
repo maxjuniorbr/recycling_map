@@ -38,3 +38,5 @@ gem 'material_icons'
 # Outras gems
 gem 'rubocop'
 gem 'htmlbeautifier'
+gem 'jsbundling-rails'
+gem 'cssbundling-rails'
