@@ -38,5 +38,4 @@ gem 'material_icons'
 # Outras gems
 gem 'rubocop'
 gem 'htmlbeautifier'
-gem 'jsbundling-rails'
-gem 'cssbundling-rails'
+gem "esbuild-rails", "~> 0.1.4"
