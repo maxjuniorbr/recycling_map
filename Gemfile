@@ -38,4 +38,3 @@ gem 'material_icons'
 # Outras gems
 gem 'rubocop'
 gem 'htmlbeautifier'
-gem "esbuild-rails", "~> 0.1.4"
