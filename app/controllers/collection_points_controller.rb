@@ -1,6 +1,16 @@
 class CollectionPointsController < ApplicationController
   before_action :set_collection_point, only: %i[show edit update destroy]
 
+  # app/controllers/collection_points_controller.rb
+  def search
+    query = params[:query].strip.downcase
+    @collection_points = CollectionPoint.joins(:recyclable_materials)
+                                        .where('lower(collection_points.name) LIKE :query OR lower(recyclable_materials.name) LIKE :query', query: "%#{query}%")
+                                        .distinct
+
+    render json: @collection_points.as_json(include: :recyclable_materials)
+  end
+
   # GET /collection_points or /collection_points.json
   def index
     @collection_points = CollectionPoint.all
@@ -23,7 +33,7 @@ class CollectionPointsController < ApplicationController
   # POST /collection_points or /collection_points.json
   def create
     @collection_point = CollectionPoint.new(collection_point_params)
-  
+
     respond_to do |format|
       if @collection_point.save
         format.html { redirect_to collection_points_url, notice: 'Collection point was successfully created.' }

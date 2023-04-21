@@ -6,7 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.css' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.css', media: "all", "data-turbolinks-track": "reload" %>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js' %>
   </head>

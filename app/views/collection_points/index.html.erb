@@ -21,7 +21,6 @@
             <th>Name</th>
             <th>Address</th>
             <th>Contact</th>
-            <th>Website</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -29,9 +28,8 @@
           <% @collection_points.each do |collection_point| %>
             <tr id="<%= dom_id collection_point %>">
               <td><%= collection_point.name %></td>
-              <td><%= collection_point.address %></td>
+              <td><%= truncate(collection_point.address, length: 50) %></td>
               <td><%= collection_point.contact %></td>
-              <td><%= collection_point.website %></td>
               <td class="right-align">
                 <%= link_to 'Show', collection_point, class: "btn" %>
                 <%= link_to 'Edit', edit_collection_point_path(collection_point), class: "btn" %>

@@ -12,3 +12,6 @@
     </div>
   </div>
 </div>
+<script>
+  window.collectionPointsData = <%= @collection_points.as_json(include: :recyclable_materials).to_json.html_safe %>;
+</script>
