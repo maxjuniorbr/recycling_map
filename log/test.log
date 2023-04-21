@@ -1,0 +1,571 @@
+  [1m[35m (39.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "recycling_map_test"[0m
+  [1m[35m (210.4ms)[0m  [1m[35mCREATE DATABASE "recycling_map_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "collection_points" CASCADE[0m
+  [1m[35m (21.3ms)[0m  [1m[35mCREATE TABLE "collection_points" ("id" bigserial primary key, "name" character varying, "address" character varying, "latitude" float, "longitude" float, "contact" character varying, "website" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "collection_points_recyclable_materials" CASCADE[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "collection_points_recyclable_materials" ("collection_point_id" bigint NOT NULL, "recyclable_material_id" bigint NOT NULL)[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE INDEX "cp_rm_cp_id_idx" ON "collection_points_recyclable_materials" ("collection_point_id")[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "cp_rm_rm_id_idx" ON "collection_points_recyclable_materials" ("recyclable_material_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "recyclable_materials" CASCADE[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "recyclable_materials" ("id" bigserial primary key, "name" character varying, "description" text, "category" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20230416153432)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20230416153420),
+(20230416153426);
+
+[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2023-04-21 01:13:15.284720"], ["updated_at", "2023-04-21 01:13:15.284720"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "1099e000b4510d124bc63784efaffa3a116bc114"], ["created_at", "2023-04-21 01:13:15.289629"], ["updated_at", "2023-04-21 01:13:15.289629"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "collection_points" DISABLE TRIGGER ALL;ALTER TABLE "collection_points_recyclable_materials" DISABLE TRIGGER ALL;ALTER TABLE "recyclable_materials" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "collection_points";
+DELETE FROM "recyclable_materials";
+INSERT INTO "collection_points" ("id", "name", "address", "latitude", "longitude", "contact", "website", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 1.5, 1.5, 'MyString', 'MyString', '2023-04-21 01:13:15.364349', '2023-04-21 01:13:15.364349'), (298486374, 'MyString', 'MyString', 1.5, 1.5, 'MyString', 'MyString', '2023-04-21 01:13:15.364349', '2023-04-21 01:13:15.364349');
+INSERT INTO "recyclable_materials" ("id", "name", "description", "category", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 'MyString', '2023-04-21 01:13:15.368170', '2023-04-21 01:13:15.368170'), (298486374, 'MyString', 'MyText', 'MyString', '2023-04-21 01:13:15.368170', '2023-04-21 01:13:15.368170')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "collection_points" ENABLE TRIGGER ALL;ALTER TABLE "collection_points_recyclable_materials" ENABLE TRIGGER ALL;ALTER TABLE "recyclable_materials" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------
+CollectionPointsControllerTest: test_should_destroy_collection_point
+--------------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCollectionPoint Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+Started DELETE "/collection_points/980190962" for 127.0.0.1 at 2023-04-20 22:13:15 -0300
+Processing by CollectionPointsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCollectionPoint::HABTM_RecyclableMaterials Delete All (0.4ms)[0m  [1m[31mDELETE FROM "collection_points_recyclable_materials" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 980190962]]
+  [1m[36mCollectionPoint Destroy (0.3ms)[0m  [1m[31mDELETE FROM "collection_points" WHERE "collection_points"."id" = $1[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/collection_points
+Completed 302 Found in 15ms (ActiveRecord: 2.4ms | Allocations: 4950)
+  [1m[36mCollectionPoint Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------
+CollectionPointsControllerTest: test_should_update_collection_point
+-------------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/collection_points/980190962" for 127.0.0.1 at 2023-04-20 22:13:15 -0300
+Processing by CollectionPointsController#update as HTML
+  Parameters: {"collection_point"=>{"address"=>"MyString", "contact"=>"MyString", "latitude"=>"1.5", "longitude"=>"1.5", "name"=>"MyString", "website"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/collection_points
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms | Allocations: 1059)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+CollectionPointsControllerTest: test_should_get_new
+---------------------------------------------------
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points/new" for 127.0.0.1 at 2023-04-20 22:13:15 -0300
+Processing by CollectionPointsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/new.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  Rendered collection_points/_form.html.erb (Duration: 14.7ms | Allocations: 8355)
+  Rendered collection_points/new.html.erb within layouts/application (Duration: 15.6ms | Allocations: 8799)
+Importmap skipped missing path: jquery-ui.min.js
+Importmap skipped missing path: jquery-ui.min.js
+  Rendered layout layouts/application.html.erb (Duration: 3394.8ms | Allocations: 663480)
+Completed 200 OK in 3400ms (Views: 3396.6ms | ActiveRecord: 0.4ms | Allocations: 665468)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------
+CollectionPointsControllerTest: test_should_create_collection_point
+-------------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCollectionPoint Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+Started POST "/collection_points" for 127.0.0.1 at 2023-04-20 22:13:18 -0300
+Processing by CollectionPointsController#create as HTML
+  Parameters: {"collection_point"=>{"address"=>"MyString", "contact"=>"MyString", "latitude"=>"1.5", "longitude"=>"1.5", "name"=>"MyString", "website"=>"MyString"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCollectionPoint Create (0.4ms)[0m  [1m[32mINSERT INTO "collection_points" ("name", "address", "latitude", "longitude", "contact", "website", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "MyString"], ["address", "MyString"], ["latitude", 1.5], ["longitude", 1.5], ["contact", "MyString"], ["website", "MyString"], ["created_at", "2023-04-21 01:13:18.955046"], ["updated_at", "2023-04-21 01:13:18.955046"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/collection_points
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms | Allocations: 975)
+  [1m[36mCollectionPoint Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" ORDER BY "collection_points"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+CollectionPointsControllerTest: test_should_get_index
+-----------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points" for 127.0.0.1 at 2023-04-20 22:13:18 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1061)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3124)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.4ms | Allocations: 3445)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+CollectionPointsControllerTest: test_should_show_collection_point
+-----------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points/980190962" for 127.0.0.1 at 2023-04-20 22:13:18 -0300
+Processing by CollectionPointsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/show.html.erb within layouts/application
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.6ms | Allocations: 237)
+  Rendered collection_points/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 954)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 3009)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.3ms | Allocations: 3446)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------
+CollectionPointsControllerTest: test_should_get_edit
+----------------------------------------------------
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points/980190962/edit" for 127.0.0.1 at 2023-04-20 22:13:18 -0300
+Processing by CollectionPointsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/edit.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  [1m[36mRecyclableMaterial Pluck (0.3ms)[0m  [1m[34mSELECT "recyclable_materials"."id" FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 980190962]]
+  Rendered collection_points/_form.html.erb (Duration: 5.2ms | Allocations: 2846)
+  Rendered collection_points/edit.html.erb within layouts/application (Duration: 5.8ms | Allocations: 3016)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 5071)
+Completed 200 OK in 10ms (Views: 8.0ms | ActiveRecord: 1.0ms | Allocations: 5494)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_destroy_recyclable_material
+--------------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mRecyclableMaterial Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+Started DELETE "/recyclable_materials/980190962" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecyclableMaterial::HABTM_CollectionPoints Delete All (0.4ms)[0m  [1m[31mDELETE FROM "collection_points_recyclable_materials" WHERE "collection_points_recyclable_materials"."recyclable_material_id" = $1[0m  [["recyclable_material_id", 980190962]]
+  [1m[36mRecyclableMaterial Destroy (0.3ms)[0m  [1m[31mDELETE FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recyclable_materials
+Completed 302 Found in 9ms (ActiveRecord: 1.9ms | Allocations: 1393)
+  [1m[36mRecyclableMaterial Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_update_recyclable_material
+-------------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/recyclable_materials/980190962" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#update as HTML
+  Parameters: {"recyclable_material"=>{"category"=>"MyString", "description"=>"MyText", "name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/recyclable_materials/980190962
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms | Allocations: 704)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_get_new
+------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials/new" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/new.html.erb within layouts/application
+  Rendered recyclable_materials/_form.html.erb (Duration: 8.2ms | Allocations: 1718)
+  Rendered recyclable_materials/new.html.erb within layouts/application (Duration: 9.1ms | Allocations: 2004)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 4159)
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.0ms | Allocations: 4766)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_create_recyclable_material
+-------------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mRecyclableMaterial Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+Started POST "/recyclable_materials" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#create as HTML
+  Parameters: {"recyclable_material"=>{"category"=>"MyString", "description"=>"MyText", "name"=>"MyString"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecyclableMaterial Create (0.2ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "MyString"], ["description", "MyText"], ["category", "MyString"], ["created_at", "2023-04-21 01:13:19.059721"], ["updated_at", "2023-04-21 01:13:19.059721"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recyclable_materials/980190963
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms | Allocations: 708)
+  [1m[36mRecyclableMaterial Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" ORDER BY "recyclable_materials"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_get_index
+--------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/index.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.7ms | Allocations: 203)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered recyclable_materials/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1015)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3079)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.4ms | Allocations: 3397)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_show_recyclable_material
+-----------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials/980190962" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/show.html.erb within layouts/application
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered recyclable_materials/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 551)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 2615)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.2ms | Allocations: 3042)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_get_edit
+-------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials/980190962/edit" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by RecyclableMaterialsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/edit.html.erb within layouts/application
+  Rendered recyclable_materials/_form.html.erb (Duration: 1.3ms | Allocations: 1077)
+  Rendered recyclable_materials/edit.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1342)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 3397)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.2ms | Allocations: 3799)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+PagesControllerTest: test_should_get_index
+------------------------------------------
+Started GET "/pages/index" for 127.0.0.1 at 2023-04-20 22:13:19 -0300
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 980190962]]
+  [1m[36mRecyclableMaterial Load (0.6ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 298486374]]
+  Rendered pages/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2743)
+  Rendered layout layouts/application.html.erb (Duration: 10.7ms | Allocations: 4878)
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 1.1ms | Allocations: 5537)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "collection_points" DISABLE TRIGGER ALL;ALTER TABLE "collection_points_recyclable_materials" DISABLE TRIGGER ALL;ALTER TABLE "recyclable_materials" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM "collection_points";
+DELETE FROM "recyclable_materials";
+INSERT INTO "collection_points" ("id", "name", "address", "latitude", "longitude", "contact", "website", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 1.5, 1.5, 'MyString', 'MyString', '2023-04-21 01:18:04.373092', '2023-04-21 01:18:04.373092'), (298486374, 'MyString', 'MyString', 1.5, 1.5, 'MyString', 'MyString', '2023-04-21 01:18:04.373092', '2023-04-21 01:18:04.373092');
+INSERT INTO "recyclable_materials" ("id", "name", "description", "category", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 'MyString', '2023-04-21 01:18:04.376619', '2023-04-21 01:18:04.376619'), (298486374, 'MyString', 'MyText', 'MyString', '2023-04-21 01:18:04.376619', '2023-04-21 01:18:04.376619')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "collection_points" ENABLE TRIGGER ALL;ALTER TABLE "collection_points_recyclable_materials" ENABLE TRIGGER ALL;ALTER TABLE "recyclable_materials" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+PagesControllerTest: test_should_get_index
+------------------------------------------
+Started GET "/pages/index" for 127.0.0.1 at 2023-04-20 22:18:04 -0300
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 980190962]]
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 298486374]]
+  Rendered pages/index.html.erb within layouts/application (Duration: 17.6ms | Allocations: 11447)
+Importmap skipped missing path: jquery-ui.min.js
+Importmap skipped missing path: jquery-ui.min.js
+  Rendered layout layouts/application.html.erb (Duration: 2559.3ms | Allocations: 219246)
+Completed 200 OK in 2565ms (Views: 2559.7ms | ActiveRecord: 1.6ms | Allocations: 222520)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_get_index
+--------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/index.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.4ms | Allocations: 233)
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.0ms | Allocations: 18)
+  Rendered recyclable_materials/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 1402)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 3559)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 4270)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_destroy_recyclable_material
+--------------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mRecyclableMaterial Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+Started DELETE "/recyclable_materials/980190962" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecyclableMaterial::HABTM_CollectionPoints Delete All (0.3ms)[0m  [1m[31mDELETE FROM "collection_points_recyclable_materials" WHERE "collection_points_recyclable_materials"."recyclable_material_id" = $1[0m  [["recyclable_material_id", 980190962]]
+  [1m[36mRecyclableMaterial Destroy (0.3ms)[0m  [1m[31mDELETE FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recyclable_materials
+Completed 302 Found in 6ms (ActiveRecord: 1.8ms | Allocations: 1615)
+  [1m[36mRecyclableMaterial Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_create_recyclable_material
+-------------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mRecyclableMaterial Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+Started POST "/recyclable_materials" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#create as HTML
+  Parameters: {"recyclable_material"=>{"category"=>"MyString", "description"=>"MyText", "name"=>"MyString"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecyclableMaterial Create (0.3ms)[0m  [1m[32mINSERT INTO "recyclable_materials" ("name", "description", "category", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "MyString"], ["description", "MyText"], ["category", "MyString"], ["created_at", "2023-04-21 01:18:07.088246"], ["updated_at", "2023-04-21 01:18:07.088246"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recyclable_materials/980190963
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms | Allocations: 1157)
+  [1m[36mRecyclableMaterial Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "recyclable_materials"[0m
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" ORDER BY "recyclable_materials"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_get_edit
+-------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials/980190962/edit" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/edit.html.erb within layouts/application
+  Rendered recyclable_materials/_form.html.erb (Duration: 4.8ms | Allocations: 2957)
+  Rendered recyclable_materials/edit.html.erb within layouts/application (Duration: 5.5ms | Allocations: 3293)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 5351)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.2ms | Allocations: 5757)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_show_recyclable_material
+-----------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials/980190962" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/show.html.erb within layouts/application
+  Rendered recyclable_materials/_recyclable_material.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered recyclable_materials/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 548)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 2603)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.3ms | Allocations: 3030)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_update_recyclable_material
+-------------------------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/recyclable_materials/980190962" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#update as HTML
+  Parameters: {"recyclable_material"=>{"category"=>"MyString", "description"=>"MyText", "name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/recyclable_materials/980190962
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 636)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------
+RecyclableMaterialsControllerTest: test_should_get_new
+------------------------------------------------------
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" WHERE "recyclable_materials"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/recyclable_materials/new" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by RecyclableMaterialsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recyclable_materials/new.html.erb within layouts/application
+  Rendered recyclable_materials/_form.html.erb (Duration: 1.5ms | Allocations: 1010)
+  Rendered recyclable_materials/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1221)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 3284)
+Completed 200 OK in 4ms (Views: 4.0ms | ActiveRecord: 0.0ms | Allocations: 3582)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+CollectionPointsControllerTest: test_should_get_index
+-----------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  Rendered collection_points/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 3219)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.4ms | Allocations: 3922)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------
+CollectionPointsControllerTest: test_should_destroy_collection_point
+--------------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCollectionPoint Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+Started DELETE "/collection_points/980190962" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCollectionPoint::HABTM_RecyclableMaterials Delete All (0.2ms)[0m  [1m[31mDELETE FROM "collection_points_recyclable_materials" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 980190962]]
+  [1m[36mCollectionPoint Destroy (0.2ms)[0m  [1m[31mDELETE FROM "collection_points" WHERE "collection_points"."id" = $1[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/collection_points
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms | Allocations: 1112)
+  [1m[36mCollectionPoint Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------
+CollectionPointsControllerTest: test_should_create_collection_point
+-------------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mCollectionPoint Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+Started POST "/collection_points" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#create as HTML
+  Parameters: {"collection_point"=>{"address"=>"MyString", "contact"=>"MyString", "latitude"=>"1.5", "longitude"=>"1.5", "name"=>"MyString", "website"=>"MyString"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCollectionPoint Create (0.4ms)[0m  [1m[32mINSERT INTO "collection_points" ("name", "address", "latitude", "longitude", "contact", "website", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "MyString"], ["address", "MyString"], ["latitude", 1.5], ["longitude", 1.5], ["contact", "MyString"], ["website", "MyString"], ["created_at", "2023-04-21 01:18:07.159896"], ["updated_at", "2023-04-21 01:18:07.159896"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/collection_points
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms | Allocations: 916)
+  [1m[36mCollectionPoint Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "collection_points"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------
+CollectionPointsControllerTest: test_should_get_edit
+----------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points/980190962/edit" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/edit.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.7ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  [1m[36mRecyclableMaterial Pluck (0.4ms)[0m  [1m[34mSELECT "recyclable_materials"."id" FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 980190962]]
+  Rendered collection_points/_form.html.erb (Duration: 7.4ms | Allocations: 3673)
+  Rendered collection_points/edit.html.erb within layouts/application (Duration: 8.2ms | Allocations: 3902)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 5957)
+Completed 200 OK in 12ms (Views: 9.2ms | ActiveRecord: 1.4ms | Allocations: 6380)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+CollectionPointsControllerTest: test_should_show_collection_point
+-----------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points/980190962" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/show.html.erb within layouts/application
+  Rendered collection_points/_collection_point.html.erb (Duration: 0.5ms | Allocations: 235)
+  Rendered collection_points/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 835)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 2890)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 3325)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------
+CollectionPointsControllerTest: test_should_update_collection_point
+-------------------------------------------------------------------
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/collection_points/980190962" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#update as HTML
+  Parameters: {"collection_point"=>{"address"=>"MyString", "contact"=>"MyString", "latitude"=>"1.5", "longitude"=>"1.5", "name"=>"MyString", "website"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/collection_points
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 670)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+CollectionPointsControllerTest: test_should_get_new
+---------------------------------------------------
+  [1m[36mCollectionPoint Load (0.2ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points" WHERE "collection_points"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/collection_points/new" for 127.0.0.1 at 2023-04-20 22:18:07 -0300
+Processing by CollectionPointsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering collection_points/new.html.erb within layouts/application
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials"[0m
+  Rendered collection_points/_form.html.erb (Duration: 3.7ms | Allocations: 2577)
+  Rendered collection_points/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 2747)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 4810)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 5123)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
