@@ -1,36 +1,30 @@
 class CollectionPointsController < ApplicationController
   before_action :set_collection_point, only: %i[show edit update destroy]
 
-  # app/controllers/collection_points_controller.rb
+  # Método para pesquisar pontos de coleta com base em uma consulta de nome ou material reciclável
   def search
     query = params[:query].strip.downcase
     @collection_points = CollectionPoint.joins(:recyclable_materials)
                                         .where('lower(collection_points.name) LIKE :query OR lower(recyclable_materials.name) LIKE :query', query: "%#{query}%")
                                         .distinct
-
     render json: @collection_points.as_json(include: :recyclable_materials)
   end
 
-  # GET /collection_points or /collection_points.json
   def index
     @collection_points = CollectionPoint.all
   end
 
-  # GET /collection_points/1 or /collection_points/1.json
   def show; end
 
-  # GET /collection_points/new
   def new
     @collection_point = CollectionPoint.new
     @recyclable_materials = RecyclableMaterial.all
   end
 
-  # GET /collection_points/1/edit
   def edit
     @recyclable_materials = RecyclableMaterial.all
   end
 
-  # POST /collection_points or /collection_points.json
   def create
     @collection_point = CollectionPoint.new(collection_point_params)
 
@@ -45,7 +39,6 @@ class CollectionPointsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /collection_points/1 or /collection_points/1.json
   def update
     respond_to do |format|
       if @collection_point.update(collection_point_params)
@@ -58,7 +51,6 @@ class CollectionPointsController < ApplicationController
     end
   end
 
-  # DELETE /collection_points/1 or /collection_points/1.json
   def destroy
     @collection_point.destroy
 
@@ -70,12 +62,10 @@ class CollectionPointsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_collection_point
     @collection_point = CollectionPoint.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def collection_point_params
     params.require(:collection_point).permit(:name, :address, :latitude, :longitude, :contact, :website,
                                              recyclable_material_ids: [])

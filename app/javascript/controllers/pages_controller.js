@@ -103,15 +103,18 @@ export default class extends Controller {
         locationControl.addTo(map);
     }
 
+    // Método para lidar com a submissão do formulário de pesquisa
     async handleSearchSubmit(event) {
         event.preventDefault();
 
+        // Obter o texto de pesquisa inserido pelo usuário e limpar espaços em branco e caracteres em caixa baixa
         const searchText = document.getElementById("search").value.trim().toLowerCase();
 
         // Fazer uma solicitação AJAX para buscar os resultados da pesquisa
         const response = await fetch(`/collection_points/search?query=${encodeURIComponent(searchText)}`);
         const searchResults = await response.json();
 
+        // Atualizar o mapa com os resultados da pesquisa
         this.updateMapWithSearchResults(searchResults);
     }
 
