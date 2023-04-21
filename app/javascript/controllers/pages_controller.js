@@ -92,7 +92,7 @@ export default class extends Controller {
 
             // Adicionar um evento de clique para obter a localização do usuário e fixar o zoom em 15
             button.onclick = function () {
-                map.locate({ setView: true, maxZoom: 15 });
+                map.locate({ setView: true, maxZoom: 17 });
             };
 
             // Retornar o container do controle personalizado

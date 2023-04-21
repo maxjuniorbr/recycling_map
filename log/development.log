@@ -10329,3 +10329,111 @@ Processing by CollectionPointsController#search as */*
 Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 2628)
 
 
+Started GET "/" for ::1 at 2023-04-20 22:20:34 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.4ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.5ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 1]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.5ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 3]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.5ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 2]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 4]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.5ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 5]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 6]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 7]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (1.1ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 18]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 20]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 21]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 22]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 23]]
+  ↳ app/views/pages/index.html.erb:16
+  Rendered pages/index.html.erb within layouts/application (Duration: 74.4ms | Allocations: 38358)
+Importmap skipped missing path: jquery-ui.min.js
+Importmap skipped missing path: jquery-ui.min.js
+  Rendered layout layouts/application.html.erb (Duration: 257.1ms | Allocations: 187732)
+Completed 200 OK in 274ms (Views: 248.2ms | ActiveRecord: 11.5ms | Allocations: 194461)
+
+
+Started GET "/" for ::1 at 2023-04-20 22:23:24 -0300
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.5ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 1]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 3]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 2]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 4]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 5]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 6]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 7]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 18]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 20]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 21]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 22]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.4ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 23]]
+  ↳ app/views/pages/index.html.erb:16
+  Rendered pages/index.html.erb within layouts/application (Duration: 39.1ms | Allocations: 19723)
+  Rendered layout layouts/application.html.erb (Duration: 51.2ms | Allocations: 31235)
+Completed 200 OK in 53ms (Views: 47.2ms | ActiveRecord: 4.6ms | Allocations: 31520)
+
+
+Started GET "/" for ::1 at 2023-04-20 22:23:42 -0300
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mCollectionPoint Load (0.3ms)[0m  [1m[34mSELECT "collection_points".* FROM "collection_points"[0m
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 1]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 3]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.5ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 2]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 4]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 5]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 6]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.2ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 7]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 18]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 20]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 21]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 22]]
+  ↳ app/views/pages/index.html.erb:16
+  [1m[36mRecyclableMaterial Load (0.3ms)[0m  [1m[34mSELECT "recyclable_materials".* FROM "recyclable_materials" INNER JOIN "collection_points_recyclable_materials" ON "recyclable_materials"."id" = "collection_points_recyclable_materials"."recyclable_material_id" WHERE "collection_points_recyclable_materials"."collection_point_id" = $1[0m  [["collection_point_id", 23]]
+  ↳ app/views/pages/index.html.erb:16
+  Rendered pages/index.html.erb within layouts/application (Duration: 39.0ms | Allocations: 19699)
+  Rendered layout layouts/application.html.erb (Duration: 52.8ms | Allocations: 30902)
+Completed 200 OK in 54ms (Views: 49.5ms | ActiveRecord: 4.0ms | Allocations: 31183)
+
+
