@@ -19,7 +19,7 @@ class RecyclableMaterialsController < ApplicationController
     respond_to do |format|
       if @recyclable_material.save
         format.html do
-          redirect_to recyclable_material_url(@recyclable_material),
+          redirect_to recyclable_materials_url,
                       notice: 'Recyclable material was successfully created.'
         end
         format.json { render :show, status: :created, location: @recyclable_material }
@@ -34,7 +34,7 @@ class RecyclableMaterialsController < ApplicationController
     respond_to do |format|
       if @recyclable_material.update(recyclable_material_params)
         format.html do
-          redirect_to recyclable_material_url(@recyclable_material),
+          redirect_to recyclable_materials_url,
                       notice: 'Recyclable material was successfully updated.'
         end
         format.json { render :show, status: :ok, location: @recyclable_material }

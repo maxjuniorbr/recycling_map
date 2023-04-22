@@ -12,6 +12,21 @@
     <%= javascript_include_tag 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js' %>
   </head>
   <body>
+    <% unless hide_menu? %>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Recycling Map</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><%= link_to "Collection Points", collection_points_path %></li>
+            <li><%= link_to "Recyclable Materials", recyclable_materials_path %></li>
+            <li><%= link_to "Users", users_path %></li>
+            <% if current_user %>
+              <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>

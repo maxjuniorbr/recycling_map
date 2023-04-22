@@ -1,17 +1,10 @@
-<div id="<%= dom_id recyclable_material %>">
-  <p>
-    <strong>Name:</strong>
-    <%= recyclable_material.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= recyclable_material.description %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= recyclable_material.category %>
-  </p>
-
+<div id="<%= dom_id recyclable_material %>" class="card">
+  <div class="card-content">
+    <span class="card-title"><strong>Name:</strong></span>
+    <p><%= recyclable_material.name %></p>
+    <span class="card-title"><strong>Description:</strong></span>
+    <p><%= recyclable_material.description %></p>
+    <span class="card-title"><strong>Category:</strong></span>
+    <p><%= recyclable_material.category %></p>
+  </div>
 </div>

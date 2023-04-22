@@ -1,14 +1,48 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Recyclable materials</h1>
-
-<div id="recyclable_materials">
-  <% @recyclable_materials.each do |recyclable_material| %>
-    <%= render recyclable_material %>
-    <p>
-      <%= link_to "Show this recyclable material", recyclable_material %>
-    </p>
+<div class="container-fluid">
+  <% if notice.present? %>
+    <div class="row">
+      <div class="col s12">
+        <div class="card green lighten-2">
+          <div class="card-content white-text">
+            <%= notice %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
+  <div class="row">
+    <div class="col s12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Recyclable Materials<%= link_to "New", new_recyclable_material_path, class: "btn right" %></span>
+        </div>
+      </div>
+      <div class="table-responsive bordered">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recyclable_materials.each do |recyclable_material| %>
+              <tr id="<%= dom_id recyclable_material %>">
+                <td><%= recyclable_material.name %></td>
+                <td><%= recyclable_material.category %></td>
+                <td><%= recyclable_material.description %></td>
+                <td class="right-align">
+                  <%= link_to 'Show', recyclable_material, class: "btn" %>
+                  <%= link_to 'Edit', edit_recyclable_material_path(recyclable_material), class: "btn" %>
+                  <%= link_to 'Destroy', recyclable_material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn red darken-1" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New recyclable material", new_recyclable_material_path %>

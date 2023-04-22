@@ -160,3 +160,6 @@ collection_points.each do |point|
 end
 
 puts 'Dados seed para CollectionPoints criados com sucesso!'
+
+user = User.create(email: 'test', password: 'test')
+puts "Usuário criado com sucesso! E-mail: #{user.email}, senha: #{user.password}"

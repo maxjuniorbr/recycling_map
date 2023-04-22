@@ -37,3 +37,4 @@ gem 'material_icons'
 # Outras gems
 gem 'rubocop'
 gem 'htmlbeautifier'
+gem 'bcrypt'

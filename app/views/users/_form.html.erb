@@ -1,0 +1,27 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+      <div class="input-field">
+        <%= form.label :email, class: ('active' if user.email.present?) %>
+        <%= form.text_field :email, class: "validate" %>
+      </div>
+      <div class="input-field">
+        <%= form.label :password, class: ('active' if user.password.present?) %>
+        <%= form.password_field :password, class: "validate" %>
+      </div>
+      <div>
+        <%= form.submit class: "btn waves-effect waves-light" %> <%= link_to "Back to Users", users_path, class: "btn" %>
+      </div>
+    </div>
+  </div>
+<% end %>

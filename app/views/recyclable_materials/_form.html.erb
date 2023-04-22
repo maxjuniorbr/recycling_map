@@ -1,8 +1,7 @@
-<%= form_with(model: recyclable_material) do |form| %>
+  <%= form_with(model: recyclable_material) do |form| %>
   <% if recyclable_material.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(recyclable_material.errors.count, "error") %> prohibited this recyclable_material from being saved:</h2>
-
       <ul>
         <% recyclable_material.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,23 +9,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+      <div class="input-field">
+        <%= form.label :name, class: ('active' if recyclable_material.name.present?), style: "display: block" %>
+        <%= form.text_field :name, class: "validate" %>
+      </div>
+      <div class="input-field">
+        <%= form.label :description, class: ('active' if recyclable_material.description.present?), style: "display: block" %>
+        <%= form.text_area :description, class: "materialize-textarea validate" %>
+      </div>
+      <div class="input-field">
+        <%= form.label :category, class: ('active' if recyclable_material.category.present?), style: "display: block" %>
+        <%= form.text_field :category, class: "validate" %>
+      </div>
+      <div>
+        <%= form.submit class: "btn waves-effect waves-light" %> <%= link_to "Back to Recyclable Materials", recyclable_materials_path, class: "btn" %>
+      </div>
+    </div>
   </div>
 <% end %>
