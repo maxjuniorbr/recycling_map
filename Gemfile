@@ -1,6 +1,5 @@
 # Gems para o funcionamento do Rails
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
@@ -12,14 +11,15 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "bootsnap", require: false
 
 # Gems para desenvolvimento
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "web-console"
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem 'ruby-debug-ide'
 end
-gem "web-console", group: :development
 
 # Gems para testes
 group :test do
