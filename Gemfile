@@ -18,7 +18,6 @@ gem "bootsnap", require: false
 group :development, :test do
   gem "web-console"
   gem "debug", platforms: %i[mri mingw x64_mingw]
-  gem 'ruby-debug-ide'
 end
 
 # Gems para testes
