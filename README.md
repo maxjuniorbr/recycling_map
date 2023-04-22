@@ -1,6 +1,6 @@
 # README
 
-Este aplicativo tem como objetivo conectar pessoas que precisam descartar itens recicláveis com locais que os aceitam. O aplicativo inclui um sistema de cadastro de materiais recicláveis, pontos de coleta, usuários e controle de sessão.
+Este aplicativo é um modelo de aprendizado e tem como objetivo conectar pessoas que precisam descartar itens recicláveis com locais que os aceitam. O aplicativo inclui um sistema de cadastro de materiais recicláveis, pontos de coleta, usuários e controle de sessão.
 
 A tela inicial do aplicativo (index ou localhost) exibe um mapa carregado via https, usando a biblioteca Leaflet, que permite aos usuários buscar por pontos de coleta por nome do material ou nome do ponto. Os dados são carregados dinamicamente à medida que o mapa é movido, com um raio de busca inicial de 10 km que se expande com cada movimento do mapa.
 
