@@ -6,7 +6,11 @@ A tela inicial do aplicativo (index ou localhost) exibe um mapa carregado via ht
 
 ## Versão do Ruby
 
-Este aplicativo requer a versão 3.2.2 do Ruby.
+Este aplicativo foi testado na versão 3.2.2 do Ruby.
+
+## Versão do Rails
+
+Este aplicativo foi testado na versão 7.0.4.3 do Rails.
 
 ## Dependências do sistema
 
