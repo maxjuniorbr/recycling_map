@@ -48,7 +48,7 @@ Este aplicativo pode ser implantado em qualquer provedor de hospedagem que supor
 
 ## Observações adicionais
 
-- O seed já cria um usuário inicial com o login "1" e senha "1".
+- O seed já cria um usuário inicial com o login "test" e senha "test".
 - Para utilizar o aplicativo, é necessário descomentar a linha 3 ("#before_action :authenticate_user!, unless: :authentication_exempt?) no arquivo application_controller.rb depois de criar um novo usuário ou para utilizar os dados de login mencionados acima.
 - Verifique as dependências no Gemfile.
 - Após baixar o código-fonte do aplicativo, execute o comando "bundle install" dentro da pasta do aplicativo.
