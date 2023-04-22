@@ -1,15 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
 
 let map;
+let collectionPointMarkers = []; // Armazenar os marcadores dos pontos de coleta
 
 export default class extends Controller {
     // Método chamado quando o controlador é conectado ao elemento DOM
     connect() {
         // Criar o mapa com uma visão inicial padrão
         map = L.map("map");
-
-        // Definir o zoom do mapa como 17
-        map.setZoom(17);
 
         // Adicionar uma camada de mapa usando o provedor de sua escolha
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -20,17 +18,17 @@ export default class extends Controller {
         // Chamar a função locate() para obter a localização atual do usuário
         map.locate({ setView: true });
 
-        // Função chamada quando a localização do usuário é encontrada
-        function onLocationFound(e) {
-            L.marker(e.latlng).addTo(map);
-            map.setView(e.latlng, 17); // Fixar o zoom em 17
-        }
-
         // Registrar a função onLocationFound para ser chamada quando a localização do usuário for encontrada
-        map.on("locationfound", onLocationFound);
+        map.on("locationfound", this.onLocationFound.bind(this));
 
-        // Adicionar marcadores para collection_points
-        this.addCollectionPointMarkers(map);
+        // Registrar a função onLocationError para ser chamada quando ocorrer um erro ao obter a localização do usuário
+        map.on("locationerror", this.onLocationError.bind(this));
+
+        // Registrar um listener de evento para o evento "moveend" do mapa, que é acionado quando o mapa é movido
+        map.on("moveend", () => {
+            const center = map.getCenter();
+            this.fetchNearbyCollectionPoints(center.lat, center.lng);
+        });
 
         // Adicionar um botão de localização no mapa
         this.addLocationButton(map);
@@ -40,33 +38,65 @@ export default class extends Controller {
         searchForm.addEventListener('submit', this.handleSearchSubmit.bind(this));
     }
 
-    // Método para adicionar marcadores de pontos de coleta ao mapa
-    addCollectionPointMarkers(map) {
-        // Obter os dados dos pontos de coleta
-        const points = window.collectionPointsData;
+    // Função chamada quando a localização do usuário é encontrada
+    onLocationFound(e) {
+        //L.marker(e.latlng).addTo(map);
+        map.setView(e.latlng, 17); // Fixar o zoom em 17
+    }
 
-        // Iterar sobre cada ponto de coleta
-        points.forEach((point) => {
-            // Adicionar um marcador para o ponto de coleta na posição [latitude, longitude]
+    // Função chamada quando ocorre um erro ao obter a localização do usuário
+    onLocationError(e) {
+        const campinas = { lat: -22.90556, lng: -47.06083 }; // Coordenadas de Campinas, Brasil
+        map.setView(campinas, 17); // Fixar o zoom em 17
+    }
+
+    // Função assíncrona para buscar pontos de coleta próximos à localização informada
+    async fetchNearbyCollectionPoints(latitude, longitude) {
+        // Fazer uma solicitação AJAX para buscar os pontos de coleta próximos à localização informada
+        const response = await fetch(`/collection_points/nearby?latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}`);
+
+        // Extrair os pontos de coleta da resposta como um objeto JSON
+        const collectionPoints = await response.json();
+
+        // Atualizar o mapa com os novos pontos de coleta
+        this.updateCollectionPointMarkers(collectionPoints);
+    }
+
+
+    // Método para atualizar marcadores de pontos de coleta no mapa
+    updateCollectionPointMarkers(collectionPoints) {
+        // Remover marcadores existentes
+        collectionPointMarkers.forEach(marker => {
+            map.removeLayer(marker);
+        });
+
+        // Limpar array de marcadores
+        collectionPointMarkers = [];
+
+        // Adicionar novos marcadores
+        collectionPoints.forEach(point => {
             const marker = L.marker([point.latitude, point.longitude]).addTo(map);
 
             // Criar uma lista de materiais recicláveis aceitos no ponto de coleta
-            const materialsList = point.recyclable_materials.map((material) => {
+            const materialsList = point.recyclable_materials.map(material => {
                 return material.name;
             }).join(', ');
 
             // Criar o conteúdo do popup do marcador
             const popupContent = `
-            <div>
-                <p><b>${point.name}</b></p>
-                <p>Endereço: ${point.address}</p>
-                <p>Contato: ${point.contact}</p>
-                <p>Materiais aceitos: ${materialsList}</p>
-            </div>
-        `;
+                <div>
+                    <p><b>${point.name}</b></p>
+                    <p>Endereço: ${point.address}</p>
+                    <p>Contato: ${point.contact}</p>
+                    <p>Materiais aceitos: ${materialsList}</p>
+                </div>
+            `;
 
             // Associar o popup ao marcador
             marker.bindPopup(popupContent);
+
+            // Adicionar o marcador ao array de marcadores
+            collectionPointMarkers.push(marker);
         });
     }
 
@@ -90,7 +120,7 @@ export default class extends Controller {
             button.style.border = 'none';
             button.style.background = '#ffffff';
 
-            // Adicionar um evento de clique para obter a localização do usuário e fixar o zoom em 15
+            // Adicionar um evento de clique para obter a localização do usuário e fixar o zoom em 17
             button.onclick = function () {
                 map.locate({ setView: true, maxZoom: 17 });
             };
