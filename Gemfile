@@ -16,9 +16,9 @@ gem "bootsnap", require: false
 
 # Gems para desenvolvimento
 group :development, :test do
-  gem "web-console"
   gem "debug", platforms: %i[mri mingw x64_mingw]
 end
+gem 'web-console', group: :development
 
 # Gems para testes
 group :test do

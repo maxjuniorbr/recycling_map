@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
-  before_action :authenticate_user!, unless: :authentication_exempt?
+  #before_action :authenticate_user!, unless: :authentication_exempt?
   helper_method :hide_menu?
 
   private

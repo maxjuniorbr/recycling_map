@@ -20,7 +20,7 @@ class RecyclableMaterialsControllerTest < ActionDispatch::IntegrationTest
       post recyclable_materials_url, params: { recyclable_material: { category: @recyclable_material.category, description: @recyclable_material.description, name: @recyclable_material.name } }
     end
 
-    assert_redirected_to recyclable_material_url(RecyclableMaterial.last)
+    assert_redirected_to recyclable_materials_url
   end
 
   test "should show recyclable_material" do
@@ -35,7 +35,7 @@ class RecyclableMaterialsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update recyclable_material" do
     patch recyclable_material_url(@recyclable_material), params: { recyclable_material: { category: @recyclable_material.category, description: @recyclable_material.description, name: @recyclable_material.name } }
-    assert_redirected_to recyclable_material_url(@recyclable_material)
+    assert_redirected_to recyclable_materials_url
   end
 
   test "should destroy recyclable_material" do
