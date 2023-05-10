@@ -1,18 +1,28 @@
-require "test_helper"
+require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get sessions_new_url
+  setup do
+    @user = User.create!(email: 'email@example.com', password: 'password', password_confirmation: 'password')
+  end
+
+  test 'should get new' do
+    get login_url
     assert_response :success
   end
 
-  test "should get create" do
-    get sessions_create_url
-    assert_response :success
+  test 'should create session' do
+    post login_url, params: { email: @user.email, password: 'password' }
+    if response.redirect?
+      assert_response :redirect
+    else
+      puts response.body
+      assert false, "Expected a redirect, but got #{response.status}"
+    end
   end
 
-  test "should get destroy" do
-    get sessions_destroy_url
-    assert_response :success
+  test 'should destroy session' do
+    post login_url, params: { email: @user.email, password: 'password' }
+    delete logout_url
+    assert_response :redirect
   end
 end
