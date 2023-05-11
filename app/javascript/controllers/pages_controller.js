@@ -140,6 +140,13 @@ export default class extends Controller {
         // Obter o texto de pesquisa inserido pelo usuário e limpar espaços em branco e caracteres em caixa baixa
         const searchText = document.getElementById("search").value.trim().toLowerCase();
 
+        // Verificar se o texto da pesquisa está vazio
+        if (searchText === "") {
+            // Se estiver vazio, exibir um alerta e retornar do método
+            alert("Por favor, preencha o campo de busca.");
+            return;
+        }
+
         // Fazer uma solicitação AJAX para buscar os resultados da pesquisa
         const response = await fetch(`/collection_points/search?query=${encodeURIComponent(searchText)}`);
         const searchResults = await response.json();
@@ -147,6 +154,7 @@ export default class extends Controller {
         // Atualizar o mapa com os resultados da pesquisa
         this.updateMapWithSearchResults(searchResults);
     }
+
 
     // Método para atualizar o mapa com os resultados da pesquisa
     updateMapWithSearchResults(searchResults) {
