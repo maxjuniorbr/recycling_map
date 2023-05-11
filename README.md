@@ -61,7 +61,7 @@ Este aplicativo pode ser implantado em qualquer provedor de hospedagem que supor
 
 ## Plus
 
-Para corrigir um erro javascript com a gem materialize, procure pelo arquivo materialize.js. No Linux, você pode usar o comando `sudo find /home/[usuário]/ -name materialize.js`. Em seguida, edite o arquivo com o comando `sudo nano [path]/materialize.js` e localize o seguinte trecho de código:
+Para corrigir uma falha no javascript com a gem materialize, que impede que o label fique sobre o input quando o campo está em edição, procure pelo arquivo materialize.js. No Linux, você pode usar o comando `sudo find /home/[usuário]/ -name materialize.js`. Em seguida, edite o arquivo com o comando `sudo nano [path]/materialize.js` e localize o seguinte trecho de código:
 
 ```javascript
 p = $jscomp.global;e = e.split(".");for (m = 0; m < e.length - 1; m++) {
@@ -73,4 +73,4 @@ Substitua por:
 let p = $jscomp.global;e = e.split("."); if(!p) p = new Array();for (m = 0; m < e.length - 1; m++) {
 ```
 
-Essa correção para o arquivo materialize.js deve resolver o problema mencionado.
+Essa correção para o arquivo materialize.js deve resolver a falha mencionada.
