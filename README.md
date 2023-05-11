@@ -26,6 +26,12 @@ Para criar o banco de dados, execute o seguinte comando:
 
 rails db:create
 
+## Migração do banco de dados
+
+Para migrar o banco de dados, execute o seguinte comando:
+
+rails db:migrate
+
 ## Inicialização do banco de dados
 
 Para inicializar o banco de dados com os dados iniciais, execute o seguinte comando:
