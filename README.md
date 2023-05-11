@@ -58,3 +58,19 @@ Este aplicativo pode ser implantado em qualquer provedor de hospedagem que supor
 - Para utilizar o aplicativo, é necessário descomentar a linha 3 ("#before_action :authenticate_user!, unless: :authentication_exempt?) no arquivo application_controller.rb depois de criar um novo usuário ou para utilizar os dados de login mencionados acima.
 - Verifique as dependências no Gemfile.
 - Após baixar o código-fonte do aplicativo, execute o comando "bundle install" dentro da pasta do aplicativo.
+
+## Plus
+
+Para corrigir um erro javascript com a gem materialize, procure pelo arquivo materialize.js. No Linux, você pode usar o comando `sudo find /home/[usuário]/ -name materialize.js`. Em seguida, edite o arquivo com o comando `sudo nano [path]/materialize.js` e localize o seguinte trecho de código:
+
+```javascript
+p = $jscomp.global;e = e.split(".");for (m = 0; m < e.length - 1; m++) {
+```
+
+Substitua por:
+
+```javascript
+let p = $jscomp.global;e = e.split("."); if(!p) p = new Array();for (m = 0; m < e.length - 1; m++) {
+```
+
+Essa correção para o arquivo materialize.js deve resolver o problema mencionado.
